@@ -1,0 +1,34 @@
+<div class="s_table">
+<%= link_to "Custom Range", :controller => "payments",:action =>"custom" %>
+<br/>
+<br/>
+<table id="mytable" cellspacing="0" summary="Payment Summary">
+  <caption>Payment Summary</caption>
+  <tr>
+    <th class="nobg">Provider</th>
+    <th>Yesterday</th>
+    <th>Current Month</th>
+    <th>Previous Month</th>
+    <th>All Time</th>
+  </tr>
+  <%  for pay in @actual_name %>
+    <tr>
+      <td class="spec"><%= ((pay.nil?)? "Offline" : pay.capitalize) %></td>
+    </tr>
+    <tr>
+      <td>Count</td>
+      <td><%= @hash_prev_count[pay] %></td>
+      <td><%= @hash_cur_count[pay] %> </td>
+      <td><%= @hash_last_count[pay] %> </td>
+      <td><%= @hash_all_count[pay] %></td>
+    </tr>
+    <tr>
+      <td>Amount</td>
+      <td><%= @hash_prev_total[pay] %></td>
+      <td><%= @hash_cur_total[pay] %> </td>
+      <td><%= @hash_last_total[pay] %> </td>
+      <td><%= @hash_all_total[pay] %></td>
+    </tr>
+  <% end %>
+</table>
+</div>

@@ -1,0 +1,23 @@
+<div class="s_table">
+  <%= link_to "Go Back",payments_custom_path %> |
+  <%= link_to "Summary Report",payments_path %>
+  <br/>
+  <br/>
+  <% unless @actual_name.nil? %>
+    <table id ="mytable"cellspacing="0" style="width:200px;">
+      <caption>Summary for Duration: <%= "#{@date_pick.start_date} to #{@date_pick.end_date}" %></caption>
+      <tr>
+        <th class="nobg">Provider</th>
+        <th>Count</th>
+        <th>Amount</th>
+      </tr>
+      <%  for pay in @actual_name %>
+        <tr>
+          <td><%= ((pay.nil?)? "Offline" : pay.capitalize) %></td>
+          <td><%= @hash_count[pay] %> </td>
+          <td><%= @hash_total[pay] %> </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

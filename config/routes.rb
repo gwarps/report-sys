@@ -6,6 +6,12 @@ ReportSys::Application.routes.draw do
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
+  #resources :payments, :only => [:index]
+
+  root :to => "payments#index"
+  get "payments",:to =>"payments#index"
+  get "payments/custom",:to=>"payments#custom",:as => :payments_custom
+  post "payments/execute_custom", :to=>"payments#execute_custom", :as => :payments_execute_custom
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)

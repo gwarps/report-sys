@@ -1,0 +1,29 @@
+<div class="s_table">
+  <%= link_to "Summary Report",payments_path %>
+  <table>
+    <caption>Payment Summary for Custom Range</caption>
+    <%= form_tag(:controller=>"payments",:action=>"execute_custom",:method=>"post") do %>
+    <tr>
+      <td class="tdc">
+        Start Date&nbsp;(yy/mm/dd)
+      </td>
+      <td class="tdc">
+        <%= text_field_tag(:start_date) %>
+
+      </td>
+    </tr>
+    <tr>
+      <td class="tdc">
+        End Date&nbsp;(yy/mm/dd)
+      </td>
+      <td class="tdc">
+        <%= text_field_tag(:end_date) %>
+      </td>
+    </tr>
+    <tr>
+      <td class="tdc">&nbsp;</td>
+      <td class="tdc"><%= submit_tag("Submit") %></td>
+    </tr>
+  <% end %>
+</table>
+</div>
