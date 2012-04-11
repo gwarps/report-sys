@@ -2,13 +2,9 @@ class PaymentsController < ApplicationController
  
   def index
     # Setting Dates for Query
-    prev_date = Date.today.prev_day
-    cur_month_start = Date.new(Date.today.year,Date.today.month)
-    cur_month_end = Date.today
-    last_month_start = Date.new(Date.today.prev_month.year,Date.today.prev_month.month)
-    # No subtraction with 1 TO manage complexity of datetime, so first date of next month
-    # Now change in query for matching exact date with datetime
-    last_month_end = cur_month_start - 1
+    prev_date = DatePick.prev_date
+    cur_month_start,cur_month_end = DatePick.cur_month_date
+    last_month_start,last_month_end = DatePick.last_month_date
 
     # For previous Date
     prev_date_data = Payment.return_single(prev_date)
@@ -23,12 +19,11 @@ class PaymentsController < ApplicationController
     all_data = Payment.return_all(thres_date)
     u_data = Payment.return_unk(thres_date)
    
-    payment_gate = Payment.gateway_list
-
+    
     @u_count = u_data.first.count
     @u_total = u_data.first.total
 
-    @gateway_list = payment_gate.collect{|x| Provider.new(x.payment_gateway)}
+    @gateway_list = Payment.gateway_list
 
     @gateway_list.each do |x|
       x.sety_payment(prev_date_data)
@@ -46,17 +41,18 @@ class PaymentsController < ApplicationController
     @date_pick.start_date = params[:start_date]
     @date_pick.end_date = params[:end_date]
 
- 
-    unless @date_pick.valid?
-      flash.now[:error] = @date_pick.errors.full_messages.first
-    else
-      payment_gate = Payment.gateway_list
-      @gateway_list = payment_gate.collect{|x| Provider.new(x.payment_gateway)}
+    respond_to do |format|
+      unless @date_pick.valid?
+        flash.now[:alert] = @date_pick.errors.full_messages.first
+        format.html{render 'payments/custom'}
+      else
+        @gateway_list = Payment.gateway_list
       
-      custom_data = Payment.return_range(@date_pick.start_date,@date_pick.end_date)
+        custom_data = Payment.return_range(@date_pick.start_date,@date_pick.end_date)
 
-      @gateway_list.each do |x|
-        x.setc_payment(custom_data)
+        @gateway_list.each do |x|
+          x.setc_payment(custom_data)
+        end
       end
     end
   end
