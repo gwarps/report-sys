@@ -63,3 +63,17 @@ td.spec {
     border-right: 0px;
     border-bottom: 0px;
 }
+
+th.unknown{
+    font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica,
+        sans-serif;
+    color: #6D929B;
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    border-top: 1px solid #C1DAD7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 6px 6px 6px 12px;
+    background: #FBD147 url("assets/bg_header.jpg") no-repeat;
+}

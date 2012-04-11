@@ -15,7 +15,7 @@
         <tr>
           <td><%= ((pay.nil?)? "Offline" : pay.capitalize) %></td>
           <td><%= @hash_count[pay] %> </td>
-          <td><%= @hash_total[pay] %> </td>
+          <td><b><%= @hash_total[pay].round(2) %></b> </td>
         </tr>
       <% end %>
     </table>
