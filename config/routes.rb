@@ -11,7 +11,7 @@ ReportSys::Application.routes.draw do
   root :to => "payments#index"
   get "payments",:to =>"payments#index"
   get "payments/custom",:to=>"payments#custom",:as => :payments_custom
-  get "payments/custom_data",:to => "payments#custom_data",:as => :payments_custom_data
+# get "payments/custom_data",:to => "payments#custom_data",:as => :payments_custom_data
   post "payments/execute_custom", :to=>"payments#execute_custom", :as => :payments_execute_custom
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

@@ -11,24 +11,24 @@
       <th>Previous Month</th>
       <th>All Time</th>
     </tr>
-    <%  for pay in @actual_name %>
+    <%  for pay in @gateway_list %>
       <tr>
-        <td class="spec"><%= ((pay.nil?)? "Offline" : pay.capitalize) %></td>
+        <td class="spec"><%= ((pay.gateway.nil?)? "Offline" : pay.gateway.capitalize) %></td>
       </tr>
       <tr>
         <td>Count</td>
-        <td><%= @hash_prev_count[pay] %></td>
-        <td><%= @hash_cur_count[pay] %> </td>
-        <td><%= @hash_last_count[pay] %> </td>
-        <td><%= @hash_all_count[pay] %></td>
+        <td><%= pay.y_count %></td>
+        <td><%= pay.c_count %> </td>
+        <td><%= pay.l_count %> </td>
+        <td><%= pay.a_count %></td>
       </tr>
       <tr>
         <td>Amount</td>
 
-        <td><b><%= @hash_prev_total[pay].round(2) %></b></td>
-        <td><b><%= @hash_cur_total[pay].round(2) %> </b></td>
-        <td><b><%= @hash_last_total[pay].round(2) %> </b></td>
-        <td><b><%= @hash_all_total[pay].round(2) %></b></td>
+        <td><b><%= pay.y_total.round(2) %></b></td>
+        <td><b><%= pay.c_total.round(2) %> </b></td>
+        <td><b><%= pay.l_total.round(2) %> </b></td>
+        <td><b><%= pay.a_total.round(2) %></b></td>
       </tr>
     <% end %>
     <tr>

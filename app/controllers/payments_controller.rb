@@ -1,68 +1,6 @@
 class PaymentsController < ApplicationController
+ 
   def index
-    prev_date = Date.today.prev_day
-    
-    cur_month_start = Date.new(Date.today.year,Date.today.month)
-    cur_month_end = Date.today
-
-    last_month_start = Date.new(Date.today.prev_month.year,Date.today.prev_month.month)
-    # No subtraction with 1 TO manage complexity of datetime, so first date of next month
-    # Now change in query for matching exact date with datetime
-    last_month_end = cur_month_start - 1
-
-    
-    # -----------------------------------
-    # For previous Date
-    prev_date_data = Payment.select("payment_gateway,count(*) as count,sum(amount) as total").where(["date(created_at) = ?",prev_date]).group("payment_gateway").to_a
-    # For Current Month
-    cur_month_data = Payment.select("payment_gateway,count(*) as count,sum(amount) as total").where(["date(created_at) between ? and ?",cur_month_start,cur_month_end]).group("payment_gateway").to_a
-    # For Last Month
-    last_month_data = Payment.select("payment_gateway,count(*) as count,sum(amount) as total").where(["date(created_at) between ? and ?",last_month_start,last_month_end]).group("payment_gateway").to_a
-    # Threshold Date for unknown
-    thres_date = Payment.select("min(date(created_at)) as min_date").where(["payment_gateway in (?,?)","billbharo","paypal"]).to_a
-    # Unknown status for min date for billbharo/paypal
-    all_data = Payment.select("payment_gateway,count(*) as count,sum(amount) as total").where(["date(created_at) >= ?",thres_date.first.min_date]).group("payment_gateway").to_a
-
-    u_data = Payment.select("payment_gateway,count(*) as count,sum(amount) as total").where(["date(created_at) < ?",thres_date.first.min_date]).group("payment_gateway").to_a
-    payment_gate = Payment.select(:payment_gateway).uniq
-
-    @actual_name = payment_gate.collect{|x| x.payment_gateway}
-    #@gateway = payment_gate.collect{|x| (x.payment_gateway.nil?)? "Offline" : x.payment_gateway}
-
-    @hash_prev_count = Hash[prev_date_data.map{|x| [x.payment_gateway,x.count]}]
-    @hash_prev_total = Hash[prev_date_data.map{|x| [x.payment_gateway,x.total]}]
-
-    @hash_cur_count = Hash[cur_month_data.map{|x| [x.payment_gateway,x.count]}]
-    @hash_cur_total = Hash[cur_month_data.map{|x| [x.payment_gateway,x.total]}]
-
-    @hash_last_count = Hash[last_month_data.map{|x| [x.payment_gateway,x.count]}]
-    @hash_last_total = Hash[last_month_data.map{|x| [x.payment_gateway,x.total]}]
-    
-    @hash_all_count = Hash[all_data.map{|x| [x.payment_gateway ,x.count]}]
-    @hash_all_total = Hash[all_data.map{|x| [x.payment_gateway,x.total]}]
-
-    @u_count = u_data.first.count
-    @u_total = u_data.first.total
-
-    @actual_name.each do |pmt|
-      @hash_prev_count[pmt] = 0 if !@hash_prev_count.keys.include?(pmt)
-      @hash_prev_total[pmt] = 0 if !@hash_prev_total.keys.include?(pmt)
-
-      @hash_cur_count[pmt] = 0 if !@hash_cur_count.keys.include?(pmt)
-      @hash_cur_total[pmt] = 0 if !@hash_cur_total.keys.include?(pmt)
-
-      @hash_last_count[pmt] = 0 if !@hash_last_count.keys.include?(pmt)
-      @hash_last_total[pmt] = 0 if !@hash_last_total.keys.include?(pmt)
-
-      @hash_all_count[pmt] = 0 if !@hash_all_count.keys.include?(pmt)
-      @hash_all_total[pmt] = 0 if !@hash_all_total.keys.include?(pmt)
-    end
-
-    
-   
-  end
-
-  def custom_data
     # Setting Dates for Query
     prev_date = Date.today.prev_day
     cur_month_start = Date.new(Date.today.year,Date.today.month)
