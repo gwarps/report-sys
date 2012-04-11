@@ -58,6 +58,7 @@ class PaymentsController < ApplicationController
       @hash_all_total[pmt] = 0 if !@hash_all_total.keys.include?(pmt)
     end
 
+    
    
   end
 
@@ -78,13 +79,13 @@ class PaymentsController < ApplicationController
     # For Last Month
     last_month_data = Payment.return_range(last_month_start,last_month_end)
     # Threshold Date for unknown
-    thres_date = Payment.select("min(date(created_at)) as min_date").where(["payment_gateway in (?,?)","billbharo","paypal"]).to_a
+    thres_date = Payment.threshold_date
     # Unknown status for min date for billbharo/paypal
-    all_data = Payment.select("payment_gateway,count(*) as count,sum(amount) as total").where(["date(created_at) >= ?",thres_date.first.min_date]).group("payment_gateway").to_a
-
-    u_data = Payment.select("payment_gateway,count(*) as count,sum(amount) as total").where(["date(created_at) < ?",thres_date.first.min_date]).group("payment_gateway").to_a
+    # If dont want threshold data, use nil as parameter
+    all_data = Payment.return_all(thres_date)
+    u_data = Payment.return_unk(thres_date)
    
-    payment_gate = Payment.select(:payment_gateway).uniq
+    payment_gate = Payment.gateway_list
 
     @u_count = u_data.first.count
     @u_total = u_data.first.total
