@@ -50,18 +50,13 @@ class PaymentsController < ApplicationController
     unless @date_pick.valid?
       flash.now[:error] = @date_pick.errors.full_messages.first
     else
-      payment_gate = Payment.select(:payment_gateway).uniq
-      @actual_name = payment_gate.collect{|x| x.payment_gateway}
+      payment_gate = Payment.gateway_list
+      @gateway_list = payment_gate.collect{|x| Provider.new(x.payment_gateway)}
       
-      custom_data = Payment.select("payment_gateway,count(*) as count,sum(amount) as total").where(["date(created_at) between ? and ?",@date_pick.start_date,@date_pick.end_date]).group("payment_gateway").to_a
+      custom_data = Payment.return_range(@date_pick.start_date,@date_pick.end_date)
 
-      @hash_count = Hash[custom_data.map{|x| [x.payment_gateway,x.count]}]
-      @hash_total = Hash[custom_data.map{|x| [x.payment_gateway,x.total]}]
-
-
-      @actual_name.each do |pmt|
-        @hash_count[pmt] = 0 if !@hash_count.keys.include?(pmt)
-        @hash_total[pmt] = 0 if !@hash_total.keys.include?(pmt)
+      @gateway_list.each do |x|
+        x.setc_payment(custom_data)
       end
     end
   end

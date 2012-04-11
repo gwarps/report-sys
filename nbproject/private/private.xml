@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/home/puneet/programming/rails/report-sys/app/models/provider.rb</file>
-        <file>file:/home/puneet/programming/rails/report-sys/app/views/payments/index.html.erb</file>
-        <file>file:/home/puneet/programming/rails/report-sys/app/views/payments/custom_data.html.erb</file>
-        <file>file:/home/puneet/programming/rails/report-sys/app/controllers/payments_controller.rb</file>
-        <file>file:/home/puneet/programming/rails/report-sys/app/models/payment.rb</file>
-    </open-files>
 </project-private>
