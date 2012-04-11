@@ -3,7 +3,6 @@
   <%= link_to "Summary Report",payments_path %>
   <br/>
   <br/>
-
   <% unless @gateway_list.nil? %>
     <table id ="mytable"cellspacing="0" style="width:200px;">
       <caption>Summary for Duration: <%= "#{@date_pick.start_date} to #{@date_pick.end_date}" %></caption>

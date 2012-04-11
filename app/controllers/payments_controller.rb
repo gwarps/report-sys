@@ -46,6 +46,7 @@ class PaymentsController < ApplicationController
         flash.now[:alert] = @date_pick.errors.full_messages.first
         format.html{render 'payments/custom'}
       else
+       
         @gateway_list = Payment.gateway_list
       
         custom_data = Payment.return_range(@date_pick.start_date,@date_pick.end_date)
@@ -53,6 +54,7 @@ class PaymentsController < ApplicationController
         @gateway_list.each do |x|
           x.setc_payment(custom_data)
         end
+        format.html{render 'payments/execute_custom'}
       end
     end
   end
