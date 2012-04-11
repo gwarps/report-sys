@@ -28,7 +28,6 @@ class Payment < ActiveRecord::Base
   def self.gateway_list
     payment_gate = Payment.select(:payment_gateway).uniq
     gateway_obj = payment_gate.collect{|x| Provider.new(x.payment_gateway)}
-
     return gateway_obj
   end
 
