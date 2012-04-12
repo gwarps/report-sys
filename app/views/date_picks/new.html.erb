@@ -1,0 +1,32 @@
+<div class="s_table">
+  <%= link_to "Summary Report",payments_path %>
+  <table>
+    <caption>Payment Summary for Custom Range</caption>
+    <%= form_for @date_pick do |f|%>
+      <% if @date_pick.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@date_pick.errors.count, "error") %> prohibited this Date Range from processing:</h2>
+
+          <ul>
+            <% @date_pick.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <tr>
+        <td class="tdc"><%= f.label :"Start Date (yy/mm/dd)" %></td>
+        <td class="tdc"><%= f.text_field :start_date %></td>
+      </tr>
+      <tr>
+        <td class="tdc"><%= f.label :"End Date (yy/mm/dd)" %></td>
+        <td class="tdc"><%= f.text_field :end_date %></td>
+      </tr>
+
+      <tr>
+        <td class="tdc">&nbsp;</td>
+        <td class="tdc"><%= f.submit "Submit" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

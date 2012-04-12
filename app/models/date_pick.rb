@@ -1,13 +1,17 @@
-class DatePick
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
-  extend ActiveModel::Naming
+class DatePick < ActiveRecord::Base
+  def self.columns()
+    @columns ||= [];
+  end
+  
+  def self.column(name,sql_type = nil,default = nil, null = true)
+    columns << ActiveRecord::ConnectionAdapters::Column.new(name.to_s,default,sql_type.to_s,null)
+  end
 
   attr_accessor :start_date,:end_date
 
   def start_must_be_less_then_end
-    errors.add(:start_date, "must be less then end") unless
-    self.start_date < self.end_date
+    errors.add(:start_date, "must be less then/equal to end") unless
+    self.start_date <= self.end_date
   end
 
   validates :start_date, :presence => true
