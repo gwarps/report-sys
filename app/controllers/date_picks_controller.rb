@@ -1,4 +1,8 @@
 class DatePicksController < ApplicationController
+
+  def index
+    redirect_to new_date_pick_path
+  end
   def new
     @date_pick = DatePick.new(:start_date => params[:start_date], :end_date => params[:end_date])
   end

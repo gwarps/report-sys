@@ -15,12 +15,12 @@
         </div>
       <% end %>
       <tr>
-        <td class="tdc"><%= f.label :"Start Date (yy/mm/dd)" %></td>
-        <td class="tdc"><%= f.text_field :start_date %></td>
+        <td class="tdc"><%= f.label :"Start Date (yyyy/mm/dd)" %></td>
+        <td class="tdc"><%= f.text_field :start_date,:id => "start_date"%></td>
       </tr>
       <tr>
-        <td class="tdc"><%= f.label :"End Date (yy/mm/dd)" %></td>
-        <td class="tdc"><%= f.text_field :end_date %></td>
+        <td class="tdc"><%= f.label :"End Date (yyyy/mm/dd)" %></td>
+        <td class="tdc"><%= f.text_field :end_date,:id =>"end_date" %></td>
       </tr>
 
       <tr>
