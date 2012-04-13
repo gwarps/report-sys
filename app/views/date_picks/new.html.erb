@@ -1,5 +1,5 @@
 <div class="s_table">
-  <%= link_to "Summary Report",payments_path %>
+  <%= link_to "Summary Report",payments_path,:class=>"p_link" %>
   <table>
     <caption>Payment Summary for Custom Range</caption>
     <%= form_for @date_pick do |f|%>
@@ -14,11 +14,10 @@
           </ul>
         </div>
       <% end %>
+
       <tr>
         <td class="tdc"><%= f.label :"Start Date (yyyy/mm/dd)" %></td>
         <td class="tdc"><%= f.text_field :start_date,:id => "start_date"%></td>
-
-
         <td class="tdc"><%= f.label :"End Date (yyyy/mm/dd)" %></td>
         <td class="tdc"><%= f.text_field :end_date,:id =>"end_date" %></td>
       </tr>
