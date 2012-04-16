@@ -18,13 +18,6 @@ body {
   font-size: 14px;
 }
 
-a img {
-  border: none;
-}
-
-a {
-  color: #0000FF;
-}
 
 .clear {
   clear: both;
@@ -746,18 +739,7 @@ pre {
 }
 
 /* line 18, ../../app/assets/stylesheets/scaffolds.css.scss */
-a {
-  color: #000;
-}
-/* line 20, ../../app/assets/stylesheets/scaffolds.css.scss */
-a:visited {
-  color: #666;
-}
-/* line 22, ../../app/assets/stylesheets/scaffolds.css.scss */
-a:hover {
-  color: #fff;
-  background-color: #000;
-}
+
 
 /* line 27, ../../app/assets/stylesheets/scaffolds.css.scss */
 div.field, div.actions {
