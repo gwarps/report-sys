@@ -1,6 +1,7 @@
 ReportSys::Application.routes.draw do
 
 
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -10,11 +11,12 @@ ReportSys::Application.routes.draw do
 
   #resources :payments, :only => [:index]
 
-  root :to => "payments#index"
+  root :to => "home#index"
   get "payments",:to =>"payments#index"
 #  get "payments/custom",:to=>"payments#custom",:as => :payments_custom
 #  post "payments/execute_custom", :to=>"payments#execute_custom", :as => :payments_execute_custom
   resources :date_picks,:only => [:new,:create,:index]
+  resources :home,:only => [:index]
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
