@@ -54,6 +54,12 @@ td.spec {
     background: #CAE8EA;
     font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 }
+td.total {
+    border-left: 1px solid #C1DAD7;
+    border-top: 0;
+    background: lightgreen;
+    font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
 #d_table{
     width:100px;
     padding: 0;

@@ -3,6 +3,8 @@
   <%= link_to "Summary Report",payments_path %>
   <br/>
   <br/>
+  <% total_count=0 %>
+  <% total_amount=0 %>
   <% unless @gateway_list.nil? %>
     <table id ="mytable"cellspacing="0" style="width:200px;">
       <caption>Summary for Duration: <%= "#{@date_pick.start_date} to #{@date_pick.end_date}" %></caption>
@@ -12,12 +14,19 @@
         <th>Amount</th>
       </tr>
       <%  for pay in @gateway_list %>
+      <% total_count = total_count + pay.c_count %>
+      <% total_amount = total_amount + pay.c_total %>
         <tr>
           <td><%= ((pay.gateway.nil?)? "Offline" : pay.gateway.capitalize) %></td>
           <td><b><%= pay.c_count %></b></td>
-          <td><b><%= pay.c_total.round(2) %> </b> </td>
+          <td><b><%= number_with_precision(pay.c_total, :precision => 2, :delimiter => ',') %> </b> </td>
         </tr>
       <% end %>
+        <tr>
+          <td class="total">TOTAL</td>
+          <td><%= total_count %></td>
+          <td><b><%= number_with_precision(total_amount, :precision => 2, :delimiter => ',') %></b></td>
+        </tr>
     </table>
   <% end %>
 

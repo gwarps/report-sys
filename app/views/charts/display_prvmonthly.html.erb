@@ -1,0 +1,31 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Day');
+  data.addColumn('number', 'Offline');
+  data.addColumn('number', 'Paypal');
+  data.addColumn('number', 'Billbharo');
+  data.addColumn('number', 'Credit');
+
+
+
+  <% k=[] %>
+  <% @data_arr.each do |date| %>
+    <%  k << "['#{date.name_str}',#{date.offline},#{date.paypal},#{date.billbharo},#{date.credits}]" %>
+  <% end %>
+  data.addRows([<%= k.join(',') %>]);
+
+  var options = {
+  title: 'Summary Report with Payment Gateway',width:1200,height:1400,
+  hAxis: {title: 'Total Lenders'},
+  vAxis: {title: '<%= "#{Date::MONTHNAMES[@date_str[0].to_i]} #{@date_str[1]}" %>',  titleTextStyle: {color: 'red'}}
+  };
+
+  var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+  chart.draw(data, options);
+  }
+</script>
+<div id="chart_div"></div>

@@ -11,6 +11,8 @@
       <th>Previous Month</th>
       <th>All Time</th>
     </tr>
+    <% total_count=[0,0,0,0] %>
+    <% total_amount=[0,0,0,0] %>
     <%  for pay in @gateway_list %>
       <tr>
         <td class="spec"><%= ((pay.gateway.nil?)? "Offline" : pay.gateway.capitalize) %></td>
@@ -21,16 +23,41 @@
         <td><%= pay.c_count %> </td>
         <td><%= pay.l_count %> </td>
         <td><%= pay.a_count %></td>
+        <% total_count[0] = total_count[0] + pay.y_count %>
+        <% total_count[1] = total_count[1] + pay.c_count %>
+        <% total_count[2] = total_count[2] + pay.l_count %>
+        <% total_count[3] = total_count[3] + pay.a_count %>
       </tr>
       <tr>
         <td>Amount</td>
 
-        <td><b><%= pay.y_total.round(2) %></b></td>
-        <td><b><%= pay.c_total.round(2) %> </b></td>
-        <td><b><%= pay.l_total.round(2) %> </b></td>
-        <td><b><%= pay.a_total.round(2) %></b></td>
+        <td><b><%= number_with_precision(pay.y_total, :precision => 2, :delimiter => ',') %></b></td>
+        <td><b><%= number_with_precision(pay.c_total, :precision => 2, :delimiter => ',') %></b></td>
+        <td><b><%= number_with_precision(pay.l_total, :precision => 2, :delimiter => ',') %></b></td>
+        <td><b><%= number_with_precision(pay.a_total, :precision => 2, :delimiter => ',') %></b></td>
+        <% total_amount[0] = total_amount[0] + pay.y_total %>
+        <% total_amount[1] = total_amount[1] + pay.c_total %>
+        <% total_amount[2] = total_amount[2] + pay.l_total %>
+        <% total_amount[3] = total_amount[3] + pay.a_total %>
       </tr>
     <% end %>
+    <tr>
+      <td class="total">TOTAL</td>
+    </tr>
+    <tr>
+      <td>Count</td>
+      <td><%= total_count[0]%></td>
+      <td><%= total_count[1]%></td>
+      <td><%= total_count[2]%></td>
+      <td><%= total_count[3]%></td>
+    </tr>
+    <tr>
+      <td>Amount</td>
+      <td><b><%= number_with_precision(total_amount[0], :precision => 2, :delimiter => ',')%></b></td>
+      <td><b><%= number_with_precision(total_amount[1], :precision => 2, :delimiter => ',')%></b></td>
+      <td><b><%= number_with_precision(total_amount[2], :precision => 2, :delimiter => ',')%></b></td>
+      <td><b><%= number_with_precision(total_amount[3], :precision => 2, :delimiter => ',')%></b></td>
+    </tr>
     <tr>
       <th scope="row" class="unknown">Unknown</th>
     </tr>

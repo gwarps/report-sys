@@ -1,0 +1,7 @@
+<%= form_tag({:controller=>"charts",:action=>@action_name,:method=>"post"},:id=>"month_form") do %>
+  <h3>Choose Month & Year</h3>
+  <br/>
+  <p><%= text_field_tag 's_date',nil,:class => 'date-picker',:readonly=>"readonly" %></p>
+  <br/>
+  <%= submit_tag("Submit") %>
+<% end %>

@@ -17,6 +17,14 @@ ReportSys::Application.routes.draw do
 #  post "payments/execute_custom", :to=>"payments#execute_custom", :as => :payments_execute_custom
   resources :date_picks,:only => [:new,:create,:index]
   resources :home,:only => [:index]
+  resources :charts,:only=>[:index] do
+    collection do
+      get "pie_chart"
+      get "custom"
+      post "display_monthly"
+      post "display_prvmonthly"
+    end
+  end
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
