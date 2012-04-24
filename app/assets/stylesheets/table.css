@@ -23,6 +23,7 @@ td {
     background: #fff;
     padding: 6px 6px 6px 12px;
     color: #6D929B;
+    min-width: 100px;
 }
 .s_table {
     font: normal 12px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;

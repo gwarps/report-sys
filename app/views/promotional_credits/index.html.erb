@@ -1,0 +1,27 @@
+<div class="s_table">
+  <br/>
+  <br/>
+  <table id ="mytable"cellspacing="0" style="width:200px;">
+    <caption>Promotional Credits Summary</caption>
+    <tr>
+      <th class="nobg">User ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Given Credits</th>
+      <th>Remaining Credits</th>
+      <th>Created At</th>
+    </tr>
+    <%  for credit in @credits %>
+      <tr>
+        <td><%= credit.user.id %></td>
+        <td><%= credit.user.full_name %> </td>
+        <td><%= credit.user.email %></td>
+        <td><b><%= credit.credits %></b></td>
+        <td><b><%= credit.user.credits %></b></td>
+        <td><b><%= credit.created_at.in_time_zone("Asia/Kolkata") %></b></td>
+      </tr>
+    <% end %>
+  </table>
+
+
+</div>

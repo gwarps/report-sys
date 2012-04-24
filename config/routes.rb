@@ -2,6 +2,8 @@ ReportSys::Application.routes.draw do
 
 
   
+  get "promotional_credits/index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -17,6 +19,7 @@ ReportSys::Application.routes.draw do
 #  post "payments/execute_custom", :to=>"payments#execute_custom", :as => :payments_execute_custom
   resources :date_picks,:only => [:new,:create,:index]
   resources :home,:only => [:index]
+  resources :promotional_credits,:only => [:index]
   resources :charts,:only=>[:index] do
     collection do
       get "pie_chart"
