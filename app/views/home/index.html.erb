@@ -2,6 +2,7 @@
   <ul>
     <li><a href="#fragment-1"><span>Payments</span></a></li>
     <li><a href="#fragment-2"><span>Lenders</span></a></li>
+    <li><a href="#fragment-3"><span>Credits</span></a></li>
   </ul>
   <div id="fragment-1">
     <ul><li><%= link_to "Summary Report",payments_path,:target => "_blank" %></li>
@@ -12,6 +13,11 @@
     <ul>
       <li><%= link_to "Monthly Summary",charts_path(:action_name=>"display_monthly"),:target=>"_blank" %></li>
       <li><%= link_to "Monthly Summary with Providers",charts_path(:action_name=>"display_prvmonthly"),:target=>"_blank" %></li>
+    </ul>
+  </div>
+  <div id="fragment-3">
+    <ul>
+      <li><%= link_to "Promotional Credits",promotional_credits_path,:target=>"_blank" %></li>
     </ul>
   </div>
 </div>
