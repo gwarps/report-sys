@@ -20,6 +20,7 @@ ReportSys::Application.routes.draw do
   resources :date_picks,:only => [:new,:create,:index]
   resources :home,:only => [:index]
   resources :promotional_credits,:only => [:index]
+  resources :fundraisers,:only => [:index]
   resources :charts,:only=>[:index] do
     collection do
       get "pie_chart"

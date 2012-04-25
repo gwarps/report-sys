@@ -30,3 +30,14 @@ production:
   username: readonly
   password: strawberry-slurp-101@milaap
   socket: /var/lib/mysql/mysql.sock
+
+fundraiser_db:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  host: staging.milaap.org
+  database: fundraiser_app_development
+  pool: 5
+  username: puneet
+  password: puneet@milaap
+  socket: /var/lib/mysql/mysql.sock

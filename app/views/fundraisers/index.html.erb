@@ -1,0 +1,53 @@
+<div class="s_table">
+  <table id="mytable" cellspacing="0" summary="Fundraisers Summary">
+    <caption>Fundraiser Status</caption>
+    <tr>
+      <th class="nobg">Campaign ID</th>
+      <th>Yesterday</th>
+      <th>This Month</th>
+      <th>Last Month</th>
+      <th>All Time</th>
+    </tr>
+
+    <% for camp in @fundraisers %>
+      <tr>
+        <td class="spec"><%= "Campaign #{camp.id} (#{camp.identifier.capitalize})" %>
+          <br/>
+          <br/>
+          <b><%= "#{camp.target_amount} #{camp.currency}"%></b>
+        </td>
+      </tr>
+      <tr>
+        <td>Count</td>
+        <td><%= camp.return_yest_count %></td>
+        <td><%= camp.return_current_month_count %></td>
+        <td><%= camp.return_last_month_count %> </td>
+        <td><%= camp.return_all_count %> </td>
+      </tr>
+      <tr>
+        <td>Amount (INR)</td>
+        <td><b><%= number_with_precision(camp.return_yest_amount, :precision => 2, :delimiter => ',') %></b></td>
+        <td><b><%= number_with_precision(camp.return_current_month_amount, :precision => 2, :delimiter => ',') %></b></td>
+        <td><b><%= number_with_precision(camp.return_last_month_amount, :precision => 2, :delimiter => ',') %></b></td>
+        <td><b><%= number_with_precision(camp.inr_amount, :precision => 2, :delimiter => ',') %></b></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td class="total">TOTAL</td>
+    </tr>
+    <tr>
+      <td>Count</td>
+      <td><%= Donation.total_yest_count%></td>
+      <td><%= Donation.total_current_month_count %></td>
+      <td><%= Donation.total_last_month_count %></td>
+      <td><%= Donation.total_all_count %></td>
+    </tr>
+    <tr>
+      <td>Amount</td>
+      <td><b><%= number_with_precision(Donation.total_yest_amount, :precision => 2, :delimiter => ',')%></b></td>
+      <td><b><%= number_with_precision(Donation.total_current_month_amount, :precision => 2, :delimiter => ',')%></b></td>
+      <td><b><%= number_with_precision(Donation.total_last_month_amount, :precision => 2, :delimiter => ',')%></b></td>
+      <td><b><%= number_with_precision(Fundraiser.return_total_amount, :precision => 2, :delimiter => ',')%></b></td>
+    </tr>
+  </table>
+</div>
