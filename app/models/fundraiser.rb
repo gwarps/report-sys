@@ -80,6 +80,9 @@ class Fundraiser < ActiveRecord::Base
     end
   end
 
+  def identifier_name
+    return "Campaign #{self.id} #{self.identifier.capitalize}"
+  end
   def self.return_total_amount
     camp = Fundraiser.all
     amt = 0.00

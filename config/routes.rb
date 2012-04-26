@@ -20,7 +20,12 @@ ReportSys::Application.routes.draw do
   resources :date_picks,:only => [:new,:create,:index]
   resources :home,:only => [:index]
   resources :promotional_credits,:only => [:index]
-  resources :fundraisers,:only => [:index]
+  resources :fundraisers,:only => [:index,:show] do
+    collection do
+      get "fundraiser_select"
+      post "fundraiser_redirect"
+    end
+  end
   resources :charts,:only=>[:index] do
     collection do
       get "pie_chart"

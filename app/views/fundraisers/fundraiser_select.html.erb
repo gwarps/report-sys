@@ -1,0 +1,5 @@
+<%= form_tag({:controller=>"fundraisers",:action=>"fundraiser_redirect",:method=>"post"}) do %>
+  <p><b>Fundraiser Details</b></p>
+  <%= select_tag "id",options_from_collection_for_select(@fundraisers,"id","identifier_name") %>
+  <%= submit_tag  "Sumbit Choice" %>
+<% end %>

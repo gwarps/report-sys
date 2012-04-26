@@ -1,0 +1,40 @@
+<div class="s_table">
+  <table id="mytable" cellspacing="0" summary="Payment Summary">
+    <caption><%= "Campaign #{@fundraiser.id}  ::  #{@fundraiser.identifier}"%> </caption>
+    <tr>
+      <td class="spec">Created By</td>
+      <td><%= @fundraiser.created_by.capitalize %></td>
+    </tr>
+
+    <tr>
+      <td class="spec">Current Target Amount</td>
+      <td><b><%= "#{number_with_precision(@fundraiser.target_amount, :precision => 2, :delimiter => ',')} #{@fundraiser.currency}" %></b></td>
+    </tr>
+
+    <tr>
+      <td class="spec">Collected Amount</td>
+      <td><b><%= "#{number_with_precision(@fundraiser.collected_amount, :precision => 2, :delimiter => ',')} #{@fundraiser.currency}" %></b></td>
+    </tr>
+
+    <tr>
+      <td class="spec">Donations</td>
+      <td><%= @fundraiser.return_all_count %></td>
+    </tr>
+
+    <tr>
+      <td class="spec">Status</td>
+      <td><%= @fundraiser.status.capitalize %></td>
+    </tr>
+
+    <tr>
+      <td class="spec">Target Completion Date</td>
+      <td><%= @fundraiser.target_time.strftime("%d %B %Y, %A") %></td>
+    </tr>
+
+    <tr>
+      <td class="spec">Creation Date</td>
+      <td><%= @fundraiser.created_at.strftime("%d %B %Y, %A") %></td>
+    </tr>
+    
+  </table>
+</div>
