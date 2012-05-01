@@ -1,6 +1,6 @@
 <div class="s_table">
   <table id="mytable" cellspacing="0" summary="Payment Summary">
-    <caption><%= "Campaign #{@fundraiser.id}  ::  #{@fundraiser.identifier}"%> </caption>
+    <caption><%= "Campaign #{@fundraiser.id}  ::  #{@fundraiser.identifier.capitalize}"%> </caption>
     <tr>
       <td class="spec">Created By</td>
       <td><%= @fundraiser.created_by.capitalize %></td>
