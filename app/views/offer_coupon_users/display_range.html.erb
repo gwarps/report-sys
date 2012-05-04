@@ -1,0 +1,17 @@
+<div class="s_table">
+  <br/>
+  <br/>
+  <table id="mytable" cellspacing="0" summary="Redeems Summary">
+    <caption><%= "Redeems for Date Range #{@date_pick.start_date}  to #{@date_pick.end_date}" %></caption>
+    <tr>
+      <th class="nobg">Id</th>
+      <th>Coupon Code</th>
+      <th>User ID</th>
+      <th>Name</th>
+      <th>Issue Date</th>
+      <th>Creation Date</th>
+    </tr>
+    <%= render :partial => "offer_coupon_users/redeem", :collection => @redeems %>
+
+  </table>
+</div>

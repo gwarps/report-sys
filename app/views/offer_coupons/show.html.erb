@@ -1,0 +1,18 @@
+<div class="s_table">
+  <br/>
+  <br/>
+
+  <table id="mytable" cellspacing="0" summary="Redeems Summary">
+    <caption><%= "Redeems for Coupon :: #{@offer_coupon.code} (#{@offer_coupon.redeems.count})" %></caption>
+    <tr>
+      <th class="nobg">Id</th>
+      <th>Coupon Code</th>
+      <th>User ID</th>
+      <th>Name</th>
+      <th>Issue Date</th>
+      <th>Creation Date</th>
+    </tr>
+
+    <%= render :partial => "offer_coupon_users/redeem", :collection => @offer_coupon.redeems %>
+  </table>
+</div>

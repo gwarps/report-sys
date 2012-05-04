@@ -1,0 +1,17 @@
+<div class="s_table">
+  <table>
+    <caption>Set Date Range</caption>
+    <%= form_tag({:controller=>"offer_coupon_users",:action=>"display_range",:method=>"post"}) do %>
+      <tr>
+        <td class="tdc"><%= label_tag "Start Date (yyyy/mm/dd)" %></td>
+        <td class="tdc"><%= text_field_tag 'start_date',nil,:readonly=>true %></td>
+        <td class="tdc"><%= label_tag "End Date (yyyy/mm/dd)" %></td>
+        <td class="tdc"><%= text_field_tag 'end_date',nil,:readonly=>true %></td>
+      </tr>
+      <tr>
+        <td class="tdc">&nbsp;</td>
+        <td class="tdc"><%= submit_tag "Submit" %> </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

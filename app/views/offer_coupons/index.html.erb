@@ -1,0 +1,29 @@
+<div class="s_table">
+  <br/>
+  <br/>
+  <table id="mytable" cellspacing="0" summary="Payment Summary">
+    <caption>Offer Coupon List</caption>
+    <tr>
+      <th class="nobg">Id</th>
+      <th>Code</th>
+      <th>Credits</th>
+      <th>Campaign</th>
+      <th>State</th>
+      <th>Current Status</th>
+      <th>Redeems</th>
+      <th>Details</th>
+    </tr>
+    <% for coupon in @offer_coupons %>
+    <tr>
+      <td><%= coupon.id %></td>
+      <td><%= coupon.code %></td>
+      <td><b><%= number_with_precision(coupon.credits, :precision => 2, :delimiter => ',') %></b></td>
+      <td><%= coupon.campaign %></td>
+      <td><%= coupon.state %></td>
+      <td><b><%= raw status_helper(coupon.expiry) %></b></td>
+      <td><b><%= coupon.redeems.count %></b></td>
+      <td><%= link_to "Complete List",coupon %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>

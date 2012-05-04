@@ -1,0 +1,10 @@
+
+
+<tr>
+  <td><%= redeem.id %> </td>
+  <td><%= offer_coupon_code_helper(redeem.offer_coupon_id) %></td>
+  <td><%= redeem.user_id %></td>
+  <td><%= user_name_helper(redeem.user_id) %></td>
+  <td><b><%= time_zone_india_helper(redeem.issued_at) %></b></td>
+  <td><b><%= time_zone_india_helper(redeem.created_at) %></b></td>
+</tr>
