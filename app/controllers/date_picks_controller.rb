@@ -22,7 +22,7 @@ class DatePicksController < ApplicationController
         
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @date_pick.errors, :status => :unprocessable_entity }
+        format.xml  { render :alert => @date_pick.errors, :status => :unprocessable_entity }
 
       end
     end

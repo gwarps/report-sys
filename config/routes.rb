@@ -2,7 +2,6 @@ ReportSys::Application.routes.draw do
 
 
   
-  get "promotional_credits/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -15,8 +14,8 @@ ReportSys::Application.routes.draw do
 
   root :to => "home#index"
   get "payments",:to =>"payments#index"
-#  get "payments/custom",:to=>"payments#custom",:as => :payments_custom
-#  post "payments/execute_custom", :to=>"payments#execute_custom", :as => :payments_execute_custom
+  #  get "payments/custom",:to=>"payments#custom",:as => :payments_custom
+  #  post "payments/execute_custom", :to=>"payments#execute_custom", :as => :payments_execute_custom
   resources :date_picks,:only => [:new,:create,:index]
   resources :home,:only => [:index]
   resources :promotional_credits,:only => [:index]
@@ -32,6 +31,13 @@ ReportSys::Application.routes.draw do
       get "custom"
       post "display_monthly"
       post "display_prvmonthly"
+    end
+  end
+
+  resources :offer_coupons, :only=>[:index,:show]
+  resources :offer_coupon_users, :only=>[:index] do
+    collection do
+      post "display_range"
     end
   end
   # Sample of named route:
